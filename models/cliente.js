@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-  const Cliente = sequelize.define('Cliente', {
+  const cliente = sequelize.define('cliente', {
     nome: DataTypes.STRING,
     cpf: DataTypes.INTEGER,
     telefone: DataTypes.STRING
   }, { timestamps: false });
 
-  Cliente.associate = (models) => {
-    Cliente.hasMany(models.Venda,
+  cliente.associate = (models) => {
+    cliente.hasMany(models.venda,
       { foreignKey: 'id_venda', as: 'vendas' });
   };
   
-  return Cliente;
+  return cliente;
 };

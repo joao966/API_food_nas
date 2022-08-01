@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-  const Venda = sequelize.define('Venda', {
+  const venda = sequelize.define('venda', {
     id_cliente: DataTypes.INTEGER,
     data_compra: DataTypes.DATE
   }, { timestamps: false });
 
-  Venda.associate = (models) => {
-    Venda.belongsTo(models.Cliente,
+  venda.associate = (models) => {
+    venda.belongsTo(models.cliente,
       { foreignKey: 'id_cliente', as: 'clientes' });
   };
 
-  return Venda;
+  return venda;
 };
