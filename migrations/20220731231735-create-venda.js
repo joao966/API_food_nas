@@ -17,7 +17,7 @@ module.exports = {
       },
       data_compra: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
       },
     });
   },
