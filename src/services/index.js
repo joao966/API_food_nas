@@ -1,7 +1,7 @@
-const { validadeCreate, getAll, getById, validateUpdate, validateExclude } = require('./product');
+const { validateCreate, getAll, getById, validateUpdate, validateExclude } = require('./product');
 
 module.exports = {
-  validadeCreate,
+  validateCreate,
   getAll,
   validateUpdate,
   validateExclude,
