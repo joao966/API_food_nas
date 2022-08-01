@@ -4,9 +4,10 @@ module.exports = {
   development: {
     username: process.env.MYSQL_USER_DEVELOP,
     password: process.env.MYSQL_PASSWORD_DEVELOP,
-    database: 'food_nas',
+    database: process.env.MYSQL_DATABASE,
     host: process.env.HOSTNAME_DEVELOP,
-    dialect: 'postgres',
+    port: process.env.MYSQL_PORT,
+    dialect: 'mysql',
   },
   test: {
     username:'',
@@ -20,6 +21,6 @@ module.exports = {
     password: process.env.MYSQL_PASSWORD,
     database: 'idw',
     host: process.env.HOSTNAME,
-    dialect: 'mysql2',
+    dialect: 'mysql',
   },
 };
