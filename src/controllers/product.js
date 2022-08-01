@@ -1,6 +1,11 @@
+const { produtos } = require('../../models');
+
 const getAll = async (_req, res, _next) => {
 
-  return res.status(200).json({ message: "success"});
+  const result = await produtos.findAll();
+  console.log('result: ', result);
+
+  return res.status(200).json({ message: "success", result});
 };
 
 const getById = async (_req, res, _next) => {

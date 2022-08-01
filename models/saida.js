@@ -1,23 +1,23 @@
 module.exports = (sequelize, DataTypes) => {
-  const Saida = sequelize.define('Saida', {
+  const saida = sequelize.define('saidas', {
     id_produto: DataTypes.INTEGER,
     id_cliente: DataTypes.INTEGER,
   }, { timestamps: false });
 
-  Saida.associate = (models) => {
-    models.Produto.belongsToMany(models.Produto, {
+  saida.associate = (models) => {
+    models.produtos.belongsToMany(models.produtos, {
       as: 'produtos',
-      through: Saida,
-      foreignKey: 'id_produto',
-      otherKey: 'id_cliente',
+      through: saida,
+      foreignKey: 'id',
+      otherKey: 'id',
     });
 
-    models.Cliente.belongsToMany(models.Cliente, {
+    models.clientes.belongsToMany(models.clientes, {
       as: 'clientes',
-      through: Saida,
-      foreignKey: 'id_cliente',
-      otherKey: 'id_produto',
+      through: saida,
+      foreignKey: 'id',
+      otherKey: 'id',
     });
   };
-  return Saida;
+  return saida;
 };
