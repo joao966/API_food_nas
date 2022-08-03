@@ -1,14 +1,11 @@
-FROM node
+FROM node:10
 
-WORKDIR /app
+WORKDIR /usr/local
 
-COPY package.json .
-RUN npm install
+COPY package*.json ./
+RUN npm install && npm cache clean --force
+ENV PATH=/usr/local/node_modules/.bin:$PATH
 
 COPY . .
-# RUN npx sequelize db:create
-# RUN npx sequelize db:migrate
-# RUN npx sequelize db:seed:all
-
 
 CMD ["npm", "start"]
