@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  api_food_nas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: food_nas_API
+    ports:
+        - 3000:3000
+    environment:
+      - PORT=3000
+    volumes:
+      - .:/app/
+    depends_on:
+      - dbapp
+  dbapp :
+    image : mysql:latest
+    restart : always
+    environment :
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "food_nas"
+    ports :
+      - "2000:3306"
+  adminer: 
+    image: adminer:latest
+    ports: 
+      - 8082:8080
