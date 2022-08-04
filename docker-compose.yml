@@ -6,22 +6,33 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: food_nas_API
+    env_file: ./.env
     ports:
         - 3000:3000
     environment:
-      - PORT=3000
+      - DB_HOST=mysqldb
+      - DB_USER=$MYSQLDB_USER
+      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - DB_NAME=$MYSQLDB_DATABASE
+      - DB_PORT=$MYSQLDB_DOCKER_PORT
     volumes:
       - .:/app/
     depends_on:
       - dbapp
-  dbapp :
-    image : mysql:latest
+
+  dbapp:
+    image: mysql:latest
     restart : always
-    environment :
-      MYSQL_ROOT_PASSWORD: "password"
-      MYSQL_DATABASE: "food_nas"
-    ports :
-      - "2000:3306"
+    expose:
+      - "3307"
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+    ports:
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - .:/var/lib/mysql
   adminer: 
     image: adminer:latest
     ports: 
