@@ -1,6 +1,6 @@
 FROM node:10
 
-WORKDIR /app
+WORKDIR /data_sistema
 
 COPY package.json .
 RUN npm install
