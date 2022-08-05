@@ -1,10 +1,9 @@
 FROM node:10
 
-WORKDIR /usr/local
+WORKDIR /data_sistema
 
-COPY package*.json ./
-RUN npm install && npm cache clean --force
-ENV PATH=/usr/local/node_modules/.bin:$PATH
+COPY package.json .
+RUN npm install
 
 COPY . .
 
